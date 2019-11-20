@@ -4,9 +4,14 @@ FROM maven:3-jdk-8-alpine AS build
 ARG NEXUS_VERSION=3.15.2
 ARG NEXUS_BUILD=01
 
-COPY . /nexus-repository-helm/
-RUN cd /nexus-repository-helm/; sed -i "s/3.15.2-01/${NEXUS_VERSION}-${NEXUS_BUILD}/g" pom.xml; \
-    mvn clean package;
+#----build in container
+#COPY . /nexus-repository-helm/
+#RUN cd /nexus-repository-helm/; sed -i "s/3.15.2-01/${NEXUS_VERSION}-${NEXUS_BUILD}/g" pom.xml; \
+#    mvn clean package --settings settings.xml;
+
+#----use already built artifact
+RUN mkdir -p /nexus-repository-helm/target
+COPY ./target/*.jar /nexus-repository-helm/target/
 
 FROM sonatype/nexus3:$NEXUS_VERSION
 ARG NEXUS_VERSION=3.15.2

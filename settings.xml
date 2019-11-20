@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<localRepository>C:/Development/maven/repository</localRepository>
+  <mirrors>
+    <mirror>
+      <mirrorOf>*</mirrorOf>
+      <name>public</name>
+      <url>http://localhost:30081/repository/maven-public/</url>
+      <id>public</id>
+    </mirror>
+  </mirrors>
+  <servers>
+	<server>
+      <id>nexus</id>
+      <username>nexus-deploy</username>
+      <password>deploy</password>
+	</server>
+  </servers>
+  <profiles>
+    <profile>
+      <repositories>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>libs-release</id>
+          <name>libs-release</name>
+          <url>http://localhost:30081/repository/maven-releases</url>
+        </repository>
+        <repository>
+          <snapshots />
+          <id>libs-snapshots</id>
+          <name>libs-snapshot</name>
+          <url>http://localhost:30081/repository/maven-snapshots</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>plugins-release</id>
+          <name>plugins-release</name>
+          <url>http://localhost:30081/repository/maven-releases</url>
+        </pluginRepository>
+        <pluginRepository>
+          <snapshots />
+          <id>plugins-snapshot</id>
+          <name>plugins-snapshot</name>
+          <url>http://localhost:30081/repository/maven-snapshots</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <id>nexus</id>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+</settings>
